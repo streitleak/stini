@@ -25,6 +25,7 @@ class StIniFile
         bool     WriteString( char *Section, char *Lines, char *Value );
         bool     ReadSection( char *Section, char **Value, int *Length);
         void     Preprocess( char *prestr );
-		int      ReadSectionLen( char *Section);
+	int      ReadSectionLen( char *Section);
+	int      SectionExists( char *SecName);
 };
 
