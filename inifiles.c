@@ -21,40 +21,40 @@ StIniFile::StIniFile( char *File )
 
       strcpy( FileName, File );
       FileName[199]='\0';
-	  fp = NULL;
+      fp = NULL;
       for( int i=0;i<DEFAULT_SECTION;i++ )
-       {    SecStartAndEnd[i][0] = 0;
-            SecStartAndEnd[i][1] = 0;
-       }
+      {    SecStartAndEnd[i][0] = 0;
+           SecStartAndEnd[i][1] = 0;
+      }
 
-	  for( int i=0;i<DEFAULT_SETTING;i++ )
-	   {
-	       SectionLines[i]=NULL;
-	   }
+      for( int i=0;i<DEFAULT_SETTING;i++ )
+      {
+           SectionLines[i]=NULL;
+      }
 	  
       if( (fp=fopen( FileName, "r+" )) == NULL )
-       {   fclose(fp);
-	  	   return;
-       }
+      {   fclose(fp);
+          return;
+      }
       else
-       {    char tmpStr[DEFAULT_SETTING];
-            char tmp[DEFAULT_SETTING];
+      {    char tmpStr[DEFAULT_SETTING];
+           char tmp[DEFAULT_SETTING];
 
             while( !feof(fp)  )
             {    
                  try
-			     {
-			          fgets( tmpStr, 1023, fp );
+                 {
+                      fgets( tmpStr, 1023, fp );
                       strlwr( tmpStr );
-				 }
+                 }
                  catch(...)
-			     {    printf("INI fgets failure.\n\r");
-				      fclose(fp);
-					  return;
-				 }
+                 {    printf("INI fgets failure.\n\r");
+                      fclose(fp);
+                      return;
+                 }
                  Preprocess( tmpStr );
-			     try
-			     {
+                 try
+                 {
                       if( tmpStr[0] == '[' )
                       {    if( CheckAllCharIsEnglish( tmpStr ) == false )
                            {    continue;
@@ -83,12 +83,12 @@ StIniFile::StIniFile( char *File )
                            strcpy( SectionLines[TotalSecLines], tmp );
                            TotalSecLines++;
                       }
-				 }
+                 }
                  catch(...)
-			     {    printf("INI Initiate failure.\n\r");
+                 {    printf("INI Initiate failure.\n\r");
                       fclose(fp);
-					  return;
-				 }
+                      return;
+                 }
             };
             SecStartAndEnd[TotalSection-1][1] = TotalSecLines;
        }
