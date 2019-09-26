@@ -249,6 +249,10 @@ catch(...)
       if( found == false )   return false;
       else                   return true;
  }
+int StIniFile::SectionExits( char *SecName)
+{
+	return GetSectionLocation( SecName);
+}
 int StIniFile::GetSectionLocation( char *SecName )
  {    for( int i=0;i<TotalSection;i++ )
        {    if( strncmp( SectionName[i], SecName, strlen( SecName )) == 0 )    return i;
