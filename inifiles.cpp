@@ -249,7 +249,7 @@ catch(...)
       if( found == false )   return false;
       else                   return true;
  }
-int StIniFile::SectionExits( char *SecName)
+int StIniFile::SectionExists( char *SecName)
 {
 	return GetSectionLocation( SecName);
 }
